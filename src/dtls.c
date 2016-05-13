@@ -153,7 +153,7 @@ destroy_dtls_context(struct dtls_context *context)
     return;
 
   SSL_CTX_free(context->ctx);
-  free(context);
+  //free(context);
   context = NULL;
 }
 
