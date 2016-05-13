@@ -1,4 +1,16 @@
-import pyrtcdc
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-#
 
-peer = pyrtcdc.PeerConnection(None, None, stun_server='stun.services.mozilla.com')
-offer = peer.generate_offer()
+def on_candidate(peer, candidate):
+    print candidate
+
+
+if __name__ == "__main__":
+    print("Starting...")
+    import pyrtcdc
+    # Если stun_server не задать, то падает при инициализации PeerConnection
+    # C ошибкой corrupted double-linked list
+    peer = pyrtcdc.PeerConnection(on_candidate=on_candidate,
+                                  stun_server='stun.services.mozilla.com')
+    offer = peer.generate_offer()
+    print("Exiting...")
