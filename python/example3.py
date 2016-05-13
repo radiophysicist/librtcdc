@@ -12,5 +12,8 @@ if __name__ == "__main__":
     # C ошибкой corrupted double-linked list
     peer = pyrtcdc.PeerConnection(on_candidate=on_candidate,
                                   stun_server='stun.ekiga.net')
-    offer = peer.generate_offer()
+
+    offer = peer.generate_offer()+peer.generate_local_candidates()
+    print("\nSDP offer:")
+    print(offer)
     print("Exiting...")
